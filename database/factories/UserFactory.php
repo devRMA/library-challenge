@@ -10,11 +10,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class UserFactory extends Factory
 {
     /**
-     * The current password being used by the factory.
-     */
-    protected static ?string $password;
-
-    /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
@@ -24,6 +19,8 @@ class UserFactory extends Factory
         return [
             'nome' => fake()->name(),
             'cpf' => fake()->unique()->numberBetween(500, 5000),
+            'dt_inclusao' => now(),
+            'dt_alteracao' => now(),
         ];
     }
 }
