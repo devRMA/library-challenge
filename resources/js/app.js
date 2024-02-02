@@ -7,6 +7,7 @@ import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { ZiggyVue } from "../../vendor/tightenco/ziggy/dist/vue.m";
 import PrimeVue from "primevue/config";
 import Dialog from "primevue/dialog";
+import Menu from "primevue/menu";
 import Lara from "@/Presets/Lara";
 
 const appName = import.meta.env.VITE_APP_NAME || "Laravel";
@@ -26,7 +27,8 @@ createInertiaApp({
                 pt: Lara,
             })
             .use(ZiggyVue)
-            .component('Dialog', Dialog)
+            .component("Dialog", Dialog)
+            .component("Menu", Menu)
             .mount(el);
     },
     progress: {

@@ -6,6 +6,7 @@ import { ref, onMounted } from "vue";
 import AppLayout from "@/Layouts/AppLayout.vue";
 import Card from "@/Components/Card.vue";
 import CreateUserModal from "@/Components/CreateUserModal.vue";
+import UpdateUserModal from "@/Components/UpdateUserModal.vue";
 
 const usersLoading = ref(true);
 const users = ref([]);
@@ -14,11 +15,14 @@ const books = ref([]);
 const rentsLoading = ref(true);
 const rents = ref([]);
 const createUserVisible = ref(false);
+const updateUserVisible = ref(false);
+const userToUpdate = ref(null);
 const createBookVisible = ref(false);
 const createRentVisible = ref(false);
 
 const getUsers = () => {
     createUserVisible.value = false;
+    updateUserVisible.value = false;
     usersLoading.value = true;
     users.value = [];
 
@@ -36,6 +40,22 @@ const getUsers = () => {
         })
         .finally(() => {
             usersLoading.value = false;
+        });
+};
+
+const updateUser = (user) => {
+    userToUpdate.value = user;
+    updateUserVisible.value = true;
+};
+
+const deleteUser = (user) => {
+    axios
+        .delete(route("users.destroy", user.id))
+        .then(() => {
+            getUsers();
+        })
+        .catch((error) => {
+            console.error(error);
         });
 };
 
@@ -99,6 +119,8 @@ onMounted(() => {
             :data="users"
             :loading="usersLoading"
             @new="createUserVisible = true"
+            @update="updateUser"
+            @delete="deleteUser"
         />
         <Card
             title="Livros"
@@ -115,6 +137,12 @@ onMounted(() => {
 
         <CreateUserModal
             v-model:visible="createUserVisible"
+            @success="getUsers"
+        />
+        <UpdateUserModal
+            v-if="updateUserVisible"
+            v-model:visible="updateUserVisible"
+            :user="userToUpdate"
             @success="getUsers"
         />
     </AppLayout>

@@ -1,7 +1,11 @@
 <script setup>
-import { reactive } from "vue";
+import { reactive, defineProps } from "vue";
 import InputError from "@/Components/InputError.vue";
 import axios from "axios";
+
+const props = defineProps({
+    user: Object,
+});
 
 const visible = defineModel("visible");
 const emit = defineEmits(["success"]);
@@ -14,7 +18,7 @@ const form = reactive({
 
 const submit = () => {
     axios
-        .post(route("users.store"), form)
+        .put(route("users.update", props.user.id), form)
         .then(() => {
             emit("success");
             form.nome = "";
@@ -42,7 +46,7 @@ const submit = () => {
         modal
         :draggable="false"
         position="center"
-        header="Cadastrar Usuário"
+        header="Editar Usuário"
         :pt="{
             mask: {
                 style: 'backdrop-filter: blur(2px); background-color: rgba(0, 0, 0, 0.5);',
@@ -57,7 +61,7 @@ const submit = () => {
                         for="nome"
                         class="block mb-2 text-sm font-medium text-gray-900"
                     >
-                        Nome
+                        Novo Nome
                     </label>
                     <input
                         type="text"
@@ -76,7 +80,7 @@ const submit = () => {
                         for="cpf"
                         class="block mb-2 text-sm font-medium text-gray-900"
                     >
-                        CPF
+                        Novo CPF
                     </label>
                     <input
                         type="text"
