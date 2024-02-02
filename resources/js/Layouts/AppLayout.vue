@@ -22,7 +22,9 @@ import ApplicationLogo from "@/Components/ApplicationLogo.vue";
         </header>
 
         <!-- Page Content -->
-        <main class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <main
+            class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex gap-4"
+        >
             <slot />
         </main>
 
