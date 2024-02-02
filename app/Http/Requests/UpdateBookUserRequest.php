@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Book;
 use App\Models\User;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class UpdateBookUserRequest extends FormRequest
 {
@@ -25,16 +23,6 @@ class UpdateBookUserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'livro_id' => [
-                'required',
-                'string',
-                Rule::exists(Book::class, 'id'),
-            ],
-            'usuario_id' => [
-                'required',
-                'string',
-                Rule::exists(User::class, 'id'),
-            ],
             'dt_aluguel_ini' => [
                 'required',
                 'date',

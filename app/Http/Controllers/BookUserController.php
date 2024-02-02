@@ -87,8 +87,6 @@ class BookUserController extends Controller
     public function update(UpdateBookUserRequest $request, BookUser $bookUser): JsonResponse
     {
         $bookUser->update([
-            'livro_id' => $request->validated('livro_id'),
-            'usuario_id' => $request->validated('usuario_id'),
             'dt_aluguel_ini' => $request->validated('dt_aluguel_ini'),
             'dt_aluguel_fim' => $request->validated('dt_aluguel_fim'),
             'dt_alteracao' => now(),

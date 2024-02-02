@@ -18,7 +18,7 @@ class UserFactory extends Factory
     {
         return [
             'nome' => fake()->name(),
-            'cpf' => fake()->unique()->numberBetween(500, 5000),
+            'cpf' => strval(fake()->unique()->numberBetween(500, 5000)),
             'dt_inclusao' => now(),
             'dt_alteracao' => now(),
         ];

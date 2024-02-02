@@ -27,12 +27,10 @@ class StoreBookUserRequest extends FormRequest
         return [
             'livro_id' => [
                 'required',
-                'string',
                 Rule::exists(Book::class, 'id'),
             ],
             'usuario_id' => [
                 'required',
-                'string',
                 Rule::exists(User::class, 'id'),
             ],
             'dt_aluguel_ini' => [

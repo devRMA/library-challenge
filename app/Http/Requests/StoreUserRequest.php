@@ -31,7 +31,6 @@ class StoreUserRequest extends FormRequest
             ],
             'cpf' => [
                 'required',
-                'string',
                 'max:11',
                 Rule::unique(User::class, 'cpf'),
             ],
