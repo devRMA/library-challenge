@@ -18,19 +18,13 @@ const createBookVisible = ref(false);
 const createRentVisible = ref(false);
 
 const getUsers = () => {
-    console.log("chamando get users");
     createUserVisible.value = false;
     usersLoading.value = true;
     users.value = [];
-    console.log("variaveis limpas");
-    console.log("createUserVisible", createUserVisible.value);
-    console.log("usersLoading", usersLoading.value);
-    console.log("users", users.value);
 
     axios
         .get(route("users.index"))
         .then((response) => {
-            console.log("api respondeu");
             users.value = response.data.map((user) => ({
                 id: user.id,
                 title: user.nome,
@@ -41,7 +35,6 @@ const getUsers = () => {
             console.error(error);
         })
         .finally(() => {
-            console.log("terminando o loading");
             usersLoading.value = false;
         });
 };

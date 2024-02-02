@@ -31,7 +31,6 @@ const submit = () => {
                     form.errors.cpf = errors.cpf[0];
                 }
             }
-            console.log(error);
         });
 };
 </script>
