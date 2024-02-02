@@ -11,6 +11,7 @@
 Uma simulação de biblioteca, onde pode ser feito o cadastro de novos usuários e livros, e quando que os usuários pegaram quais livros alugados.
 
 O projeto pode ser acessado aqui: <https://library.devrma.com>
+Os endpoints da API podem ser acessados aqui: <https://library.devrma.com/docs>
 
 ## Requisitos para executar o projeto em localhost
 
