@@ -7,6 +7,8 @@ import AppLayout from "@/Layouts/AppLayout.vue";
 import Card from "@/Components/Card.vue";
 import CreateUserModal from "@/Components/CreateUserModal.vue";
 import UpdateUserModal from "@/Components/UpdateUserModal.vue";
+import CreateBookModal from "@/Components/CreateBookModal.vue";
+import UpdateBookModal from "@/Components/UpdateBookModal.vue";
 
 const usersLoading = ref(true);
 const users = ref([]);
@@ -18,6 +20,8 @@ const createUserVisible = ref(false);
 const updateUserVisible = ref(false);
 const userToUpdate = ref(null);
 const createBookVisible = ref(false);
+const updateBookVisible = ref(false);
+const bookToUpdate = ref(null);
 const createRentVisible = ref(false);
 
 const getUsers = () => {
@@ -61,6 +65,7 @@ const deleteUser = (user) => {
 
 const getBooks = () => {
     createBookVisible.value = false;
+    updateBookVisible.value = false;
     booksLoading.value = true;
     books.value = [];
 
@@ -78,6 +83,22 @@ const getBooks = () => {
         })
         .finally(() => {
             booksLoading.value = false;
+        });
+};
+
+const updateBook = (book) => {
+    bookToUpdate.value = book;
+    updateBookVisible.value = true;
+};
+
+const deleteBook = (user) => {
+    axios
+        .delete(route("books.destroy", user.id))
+        .then(() => {
+            getBooks();
+        })
+        .catch((error) => {
+            console.error(error);
         });
 };
 
@@ -127,9 +148,11 @@ onMounted(() => {
             :data="books"
             :loading="booksLoading"
             @new="createBookVisible = true"
+            @update="updateBook"
+            @delete="deleteBook"
         />
         <Card
-            title="Alugueis"
+            title="Aluguéis"
             :data="rents"
             :loading="rentsLoading"
             @new="createRentVisible = true"
@@ -144,6 +167,17 @@ onMounted(() => {
             v-model:visible="updateUserVisible"
             :user="userToUpdate"
             @success="getUsers"
+        />
+
+        <CreateBookModal
+            v-model:visible="createBookVisible"
+            @success="getBooks"
+        />
+        <UpdateBookModal
+            v-if="updateBookVisible"
+            v-model:visible="updateBookVisible"
+            :book="bookToUpdate"
+            @success="getBooks"
         />
     </AppLayout>
 </template>

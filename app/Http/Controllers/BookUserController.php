@@ -11,7 +11,7 @@ use Illuminate\Http\JsonResponse;
 class BookUserController extends Controller
 {
     /**
-     * Retorna a lista de alugueis.
+     * Retorna a lista de aluguéis.
      *
      * @return JsonResponse
      */
