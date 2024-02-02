@@ -1,3 +1,12 @@
+<script setup>
+import AppLayout from "@/Layouts/AppLayout.vue";
+import { Head } from "@inertiajs/vue3";
+</script>
+
 <template>
-    <h1>Hello World!</h1>
+    <Head title="Home" />
+
+    <AppLayout>
+        <button>Hello World!</button>
+    </AppLayout>
 </template>
