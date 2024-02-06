@@ -3,9 +3,11 @@
 use App\Providers\AppServiceProvider;
 use App\Providers\AuthServiceProvider;
 use App\Providers\EventServiceProvider;
+use App\Providers\FortifyServiceProvider;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\ServiceProvider;
+use Jenssegers\Agent\AgentServiceProvider;
 
 return [
     /*
@@ -112,7 +114,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'pt_BR',
 
     /*
     |--------------------------------------------------------------------------
@@ -143,8 +145,8 @@ return [
     */
 
     'maintenance' => [
-        'driver' => 'file',
-        // 'store' => 'redis',
+        'driver' => 'cache',
+        'store' => 'redis',
     ],
 
     /*
@@ -160,6 +162,9 @@ return [
 
     'providers' => ServiceProvider::defaultProviders()->merge([
         // Package Service Providers...
+
+        AgentServiceProvider::class,
+        FortifyServiceProvider::class,
 
         // Application Service Providers...
         AppServiceProvider::class,
@@ -180,7 +185,5 @@ return [
     |
     */
 
-    'aliases' => Facade::defaultAliases()->merge([
-        // 'Example' => App\Facades\Example::class,
-    ])->toArray(),
+    'aliases' => Facade::defaultAliases()->merge([])->toArray(),
 ];
