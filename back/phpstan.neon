@@ -1,0 +1,12 @@
+# https://github.com/larastan/larastan
+
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+    # https://phpstan.org/blog/phpstan-1-6-0-with-conditional-return-types#lower-memory-consumption
+    - vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+    paths:
+        - app
+
+    level: 7
