@@ -3,5 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return response()->json('Hello World!');
+    return response()
+        ->json('API Library Challenge');
 });
