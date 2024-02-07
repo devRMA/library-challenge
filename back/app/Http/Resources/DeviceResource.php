@@ -29,7 +29,6 @@ class DeviceResource extends JsonResource
         $agent = new Agent(userAgent: $this->resource->user_agent);
         $browser = $agent->browser();
         $platform = $agent->platform();
-        $device = $agent->device();
         $location = $this->resource->location;
         $lastActivity = Carbon::createFromTimestamp(
             $this->resource->last_activity
@@ -38,7 +37,6 @@ class DeviceResource extends JsonResource
         return [
             'browser' => $browser === false ? null : $browser,
             'platform' => $platform === false ? null : $platform,
-            'device' => $device === false ? null : $device,
             'ip_address' => $this->resource->ip_address,
             'last_activity' => $lastActivity->toIso8601String(),
             'location' => [
