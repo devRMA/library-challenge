@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Book;
 use App\Models\Client;
 
 return [
@@ -135,7 +136,12 @@ return [
         'host' => env('MEILISEARCH_HOST', 'http://localhost:7700'),
         'key' => env('MEILISEARCH_KEY'),
         'index-settings' => [
-            Client::class => [],
+            Client::class => [
+                'filterableAttributes' => ['id', 'name', 'cpf'],
+            ],
+            Book::class => [
+                'filterableAttributes' => ['id', 'name'],
+            ],
         ],
     ],
 

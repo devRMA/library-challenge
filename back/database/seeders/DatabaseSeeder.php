@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             ClientSeeder::class,
+            BookSeeder::class,
         ]);
 
         activity()->enableLogging();

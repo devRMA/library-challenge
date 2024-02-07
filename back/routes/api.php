@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -31,4 +32,5 @@ Route::group([
     });
 
     Route::apiResource('clients', ClientController::class);
+    Route::apiResource('books', BookController::class);
 });

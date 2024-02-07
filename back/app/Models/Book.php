@@ -8,7 +8,7 @@ use Laravel\Scout\Searchable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Client extends Model
+class Book extends Model
 {
     use HasFactory;
     use Searchable;
@@ -22,7 +22,6 @@ class Client extends Model
      */
     protected $fillable = [
         'name',
-        'cpf',
     ];
 
     /**
