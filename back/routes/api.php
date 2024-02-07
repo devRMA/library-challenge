@@ -23,5 +23,9 @@ Route::group([
         // GET user/devices
         Route::get('devices', 'devices')
             ->name('user-devices.index');
+
+        // DELETE user/devices
+        Route::delete('devices', 'logoutOtherDevices')
+            ->name('user-devices.delete');
     });
 });
