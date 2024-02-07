@@ -29,7 +29,7 @@ services:
             - meilisearch
 
     pgsql:
-        image: 'postgres:15'
+        image: 'postgres:16-alpine'
         environment:
             PGPASSWORD: '${DB_PASSWORD:-secret}'
             POSTGRES_DB: '${DB_DATABASE}'
