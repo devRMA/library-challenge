@@ -23,6 +23,13 @@ use Torann\GeoIP\Location;
 class Session extends Model
 {
     /**
+     * Indicates if the model should be timestamped.
+     *
+     * @var bool
+     */
+    public $timestamps = false;
+
+    /**
      * The accessors to append to the model's array form.
      *
      * @var list<string>
