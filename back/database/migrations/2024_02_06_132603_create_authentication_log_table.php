@@ -5,7 +5,12 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class() extends Migration {
-    public function up(): void
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
     {
         Schema::create(config('authentication-log.table_name'), function (Blueprint $table) {
             $table->id();
@@ -18,5 +23,15 @@ return new class() extends Migration {
             $table->boolean('cleared_by_user')->default(false);
             $table->json('location')->nullable();
         });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists(config('authentication-log.table_name'));
     }
 };
