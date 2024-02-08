@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Scout\Searchable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -57,5 +58,23 @@ class Book extends Model
             ->logOnlyDirty()
             ->dontSubmitEmptyLogs()
             ->logFillable();
+    }
+
+    /**
+     * Os clientes que alugaram este livro.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Client>
+     */
+    public function clients(): BelongsToMany
+    {
+        $pivot = new BookClient();
+
+        return $this->belongsToMany(Client::class)
+            ->using(get_class($pivot))
+            ->withPivot([
+                'rent_started_at',
+                'rent_ended_at',
+            ])
+            ->withTimestamps();
     }
 }
