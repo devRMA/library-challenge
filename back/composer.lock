@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0b2cf066f6aebe9cd77321cd3e101c2c",
+    "content-hash": "7cde53cf39954d05ee4ce884e3bdc647",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -7745,16 +7745,16 @@
         },
         {
             "name": "fidry/cpu-core-counter",
-            "version": "1.0.0",
+            "version": "1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theofidry/cpu-core-counter.git",
-                "reference": "85193c0b0cb5c47894b5eaec906e946f054e7077"
+                "reference": "f92996c4d5c1a696a6a970e20f7c4216200fcc42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theofidry/cpu-core-counter/zipball/85193c0b0cb5c47894b5eaec906e946f054e7077",
-                "reference": "85193c0b0cb5c47894b5eaec906e946f054e7077",
+                "url": "https://api.github.com/repos/theofidry/cpu-core-counter/zipball/f92996c4d5c1a696a6a970e20f7c4216200fcc42",
+                "reference": "f92996c4d5c1a696a6a970e20f7c4216200fcc42",
                 "shasum": ""
             },
             "require": {
@@ -7794,7 +7794,7 @@
             ],
             "support": {
                 "issues": "https://github.com/theofidry/cpu-core-counter/issues",
-                "source": "https://github.com/theofidry/cpu-core-counter/tree/1.0.0"
+                "source": "https://github.com/theofidry/cpu-core-counter/tree/1.1.0"
             },
             "funding": [
                 {
@@ -7802,7 +7802,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-09-17T21:38:23+00:00"
+            "time": "2024-02-07T09:43:46+00:00"
         },
         {
             "name": "filp/whoops",
@@ -10891,6 +10891,67 @@
                 }
             ],
             "time": "2024-01-12T13:14:58+00:00"
+        },
+        {
+            "name": "sti3bas/laravel-scout-array-driver",
+            "version": "v3.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sti3bas/laravel-scout-array-driver.git",
+                "reference": "eeab28dfe552919cc1638641cbe0be5c76435f93"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sti3bas/laravel-scout-array-driver/zipball/eeab28dfe552919cc1638641cbe0be5c76435f93",
+                "reference": "eeab28dfe552919cc1638641cbe0be5c76435f93",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^8.0|^9.0|^10.0",
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "laravel/scout": "^10.0",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Sti3bas\\ScoutArray\\ScoutArrayEngineServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sti3bas\\ScoutArray\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Laurynas Geigalas",
+                    "email": "sti3bas@gmail.com"
+                }
+            ],
+            "description": "Array driver for Laravel Scout",
+            "keywords": [
+                "array",
+                "driver",
+                "laravel",
+                "scout",
+                "testing"
+            ],
+            "support": {
+                "issues": "https://github.com/Sti3bas/laravel-scout-array-driver/issues",
+                "source": "https://github.com/Sti3bas/laravel-scout-array-driver/tree/v3.5"
+            },
+            "time": "2023-07-14T11:50:26+00:00"
         },
         {
             "name": "symfony/yaml",
