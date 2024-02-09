@@ -16,10 +16,12 @@ return new class() extends Migration {
 
             $table->foreignId('book_id')
                 ->comment('Id do livro que está sendo alugado')
-                ->constrained();
+                ->constrained()
+                ->onDelete('cascade');
             $table->foreignId('client_id')
                 ->comment('Cliente que está alugando o livro')
-                ->constrained();
+                ->constrained()
+                ->onDelete('cascade');
 
             $table->dateTime('rent_started_at')
                 ->comment('Data de início do aluguel do livro');
