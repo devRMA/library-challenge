@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ClientsRequest;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use App\Http\Resources\BookRentalResource;
 use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use Illuminate\Http\JsonResponse;
@@ -94,5 +95,22 @@ class ClientController extends Controller
 
         return response()
             ->json('', JsonResponse::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * Retorna o histórico de aluguéis de um cliente específico.
+     *
+     * @param Client $client
+     *
+     * @return JsonResponse
+     */
+    public function rentalHistory(Client $client): JsonResponse
+    {
+        return response()
+            ->json(
+                BookRentalResource::collection(
+                    $client->books
+                )
+            );
     }
 }

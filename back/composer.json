@@ -12,6 +12,7 @@
         "jenssegers/agent": "^2.6",
         "laravel/fortify": "^1.20",
         "laravel/framework": "^10.10",
+        "laravel/octane": "^2.3",
         "laravel/sanctum": "^3.3",
         "laravel/scout": "^10.8",
         "laravel/tinker": "^2.8",

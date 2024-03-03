@@ -33,4 +33,7 @@ Route::group([
 
     Route::apiResource('clients', ClientController::class);
     Route::apiResource('books', BookController::class);
+
+    Route::get('clients/{client}/history', [ClientController::class, 'rentalHistory'])
+        ->name('clients.history.index');
 });
