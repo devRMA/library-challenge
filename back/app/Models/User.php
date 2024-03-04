@@ -2,22 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
 /**
- * @property int                                                               $id
- * @property null|string                                                       $name
- * @property string                                                            $email
- * @property \Illuminate\Database\Eloquent\Collection<int,\App\Models\Session> $sessions
- * @property Carbon                                                            $created_at
- * @property Carbon                                                            $updated_at
- * @property null|Illuminate\Database\Eloquent\Relations\Pivot                 $pivot
+ * @property int                     $id
+ * @property string                  $name
+ * @property string                  $email
+ * @property Collection<int,Session> $sessions
+ * @property Carbon                  $created_at
+ * @property Carbon                  $updated_at
+ * @property null|Pivot              $pivot
  */
 class User extends Authenticatable
 {
@@ -88,7 +91,7 @@ class User extends Authenticatable
     /**
      * As sessões do usuário.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Session>
+     * @return HasMany<Session>
      */
     public function sessions(): HasMany
     {

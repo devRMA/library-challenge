@@ -4,7 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Support\Carbon;
 
+/**
+ * @property int         $id
+ * @property int         $book_id
+ * @property Book        $book
+ * @property int         $client_id
+ * @property Client      $client
+ * @property Carbon      $rent_started_at
+ * @property null|Carbon $rent_ended_at
+ * @property Carbon      $created_at
+ * @property Carbon      $updated_at
+ */
 class BookClient extends Pivot
 {
     /**
@@ -49,7 +61,7 @@ class BookClient extends Pivot
     /**
      * O livro que está sendo alugado.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Book,\App\Models\BookClient>
+     * @return BelongsTo<Book,BookClient>
      */
     public function book(): BelongsTo
     {
@@ -59,7 +71,7 @@ class BookClient extends Pivot
     /**
      * Cliente que está alugando o livro.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Client,\App\Models\BookClient>
+     * @return BelongsTo<Client,BookClient>
      */
     public function client(): BelongsTo
     {

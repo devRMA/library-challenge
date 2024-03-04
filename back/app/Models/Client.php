@@ -2,13 +2,25 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+use Illuminate\Support\Carbon;
 use Laravel\Scout\Searchable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
 
+/**
+ * @property int                  $id
+ * @property string               $name
+ * @property string               $cpf
+ * @property Collection<int,Book> $books
+ * @property Carbon               $created_at
+ * @property Carbon               $updated_at
+ * @property null|Pivot           $pivot
+ */
 class Client extends Model
 {
     use HasFactory;
@@ -64,7 +76,7 @@ class Client extends Model
     /**
      * Os livros que esse cliente alugou.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany<\App\Models\Book>
+     * @return BelongsToMany<Book>
      */
     public function books(): BelongsToMany
     {
