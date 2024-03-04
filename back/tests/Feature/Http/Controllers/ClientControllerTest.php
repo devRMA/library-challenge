@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Book;
 use App\Models\Client;
 use App\Models\User;
 
@@ -113,3 +114,27 @@ it('should allow deleting clients', function () {
         'cpf' => $client->cpf,
     ]);
 });
+
+it("should return a customer's rental history", function () {
+    $user = User::factory()->create();
+    $client = Client::factory()->create();
+    foreach (Book::factory(5)->create() as $book) {
+        $client->books()->attach($book->id, [
+            'rent_started_at' => now()->subDays(fake()->randomNumber(2)),
+            'rent_ended_at' => fake()->boolean() ? now() : null,
+        ]);
+    }
+
+    actingAs($user)
+        ->getJson(route('clients.history.index', $client->id))
+        ->assertOk()
+        ->assertJsonCount(5)
+        ->assertJsonStructure([
+            '*' => [
+                'id',
+                'name',
+                'rent_started_at',
+                'rent_ended_at',
+            ],
+        ]);
+})->only();

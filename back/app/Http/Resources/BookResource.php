@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use App\Models\Book;
+use App\Models\BookClient;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -24,9 +25,18 @@ class BookResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $book = $this->resource;
         return [
-            'id' => $this->resource->id,
-            'name' => $this->resource->name,
+            'id' => $book->id,
+            'name' => $book->name,
+            'rent_started_at' => $this->whenPivotLoaded(
+                new BookClient,
+                fn () => $book->pivot->rent_started_at
+            ),
+            'rent_ended_at' => $this->whenPivotLoaded(
+                new BookClient,
+                fn () => $book->pivot->rent_ended_at
+            ),
         ];
     }
 }
