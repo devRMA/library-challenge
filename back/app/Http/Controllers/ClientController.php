@@ -6,6 +6,7 @@ use App\Http\Requests\ClientsRequest;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
 use App\Http\Resources\BookRentalResource;
+use App\Http\Resources\BookResource;
 use App\Http\Resources\ClientResource;
 use App\Models\Client;
 use Illuminate\Http\JsonResponse;
@@ -108,8 +109,10 @@ class ClientController extends Controller
     {
         return response()
             ->json(
-                BookRentalResource::collection(
-                    $client->books
+                BookResource::collection(
+                    $client->books()
+                        ->orderBy('rent_ended_at', 'desc')
+                        ->get()
                 )
             );
     }
