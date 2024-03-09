@@ -20,6 +20,8 @@ class AcceptLanguageMiddleware
     public function handle(Request $request, \Closure $next)
     {
         $user_locales = (new Agent())->languages();
+
+        /** @var array<int,string>|string */
         $locale = head($user_locales);
         $locale = Str::replace('-', '_', $locale);
         if (is_array($locale)) {
