@@ -13,6 +13,10 @@ Route::get('/', function () {
 
 Route::group([
     'middleware' => ['auth'],
+    'where' => [
+        'client' => '[0-9]+',
+        'book' => '[0-9]+',
+    ],
 ], function () {
     Route::group([
         'prefix' => 'user',
@@ -34,6 +38,31 @@ Route::group([
     Route::apiResource('clients', ClientController::class);
     Route::apiResource('books', BookController::class);
 
-    Route::get('clients/{client}/history', [ClientController::class, 'rentalHistory'])
-        ->name('clients.history.index');
+    Route::group([
+        'as' => 'clients.',
+        'prefix' => 'clients',
+        'controller' => ClientController::class,
+    ], function () {
+        // GET clients/{client}/history
+        Route::get('{client}/history', 'rentalHistory')
+            ->name('history.index');
+
+        // POST clients/{client}/rent/{book}
+        Route::post('{client}/rent/{book}', 'rentBook')
+            ->name('rent.start');
+
+        // DELETE clients/{client}/rent/{book}
+        Route::delete('{client}/rent/{book}', 'returnBook')
+            ->name('rent.end');
+    });
+
+    Route::group([
+        'as' => 'books.',
+        'prefix' => 'books',
+        'controller' => BookController::class,
+    ], function () {
+        // GET books/{book}/history
+        Route::get('{book}/history', 'rentalHistory')
+            ->name('history.index');
+    });
 });

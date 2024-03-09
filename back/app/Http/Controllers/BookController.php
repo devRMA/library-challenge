@@ -6,6 +6,7 @@ use App\Http\Requests\BooksRequest;
 use App\Http\Requests\StoreBookRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Http\Resources\BookResource;
+use App\Http\Resources\ClientResource;
 use App\Models\Book;
 use Illuminate\Http\JsonResponse;
 
@@ -92,5 +93,24 @@ class BookController extends Controller
 
         return response()
             ->json('', JsonResponse::HTTP_NO_CONTENT);
+    }
+
+    /**
+     * Retorna o histórico de aluguéis de um livro específico.
+     *
+     * @param Book $book
+     *
+     * @return JsonResponse
+     */
+    public function rentalHistory(Book $book): JsonResponse
+    {
+        return response()
+            ->json(
+                ClientResource::collection(
+                    $book->clients()
+                        ->orderBy('rent_ended_at', 'desc')
+                        ->get()
+                )
+            );
     }
 }

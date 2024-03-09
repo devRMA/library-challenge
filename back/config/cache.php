@@ -104,4 +104,8 @@ return [
     */
 
     'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache_'),
+
+    // o tempo padrão da expiração do cache
+    // 60 * 60 * 24 * 30 = 1 mês em segundos
+    'default_ttl' => 60 * 60 * 24 * 30,
 ];
