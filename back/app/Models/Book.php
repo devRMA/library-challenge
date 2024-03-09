@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\Pivot;
 use Laravel\Scout\Searchable;
 use Spatie\Activitylog\LogOptions;
 use Spatie\Activitylog\Traits\LogsActivity;
@@ -18,7 +17,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
  * @property Collection<int,Book> $books
  * @property Carbon               $created_at
  * @property Carbon               $updated_at
- * @property null|Pivot           $pivot
+ * @property null|BookClient      $pivot
  */
 class Book extends Model
 {
