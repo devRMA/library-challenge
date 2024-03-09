@@ -210,3 +210,23 @@ it('should return an error if the book is not being rented by the user', functio
         ->deleteJson(route('clients.rent.end', [$client, $book]))
         ->assertNotFound();
 });
+
+it('should delete the rentals when the client is deleted', function () {
+    $user = User::factory()->create();
+    $book = Book::factory()->create();
+    $client = Client::factory()->create();
+
+    $client->books()->attach($book, [
+        'rent_started_at' => now(),
+        'rent_ended_at' => now(),
+    ]);
+
+    actingAs($user)
+        ->deleteJson(route('clients.destroy', $client))
+        ->assertNoContent();
+
+    assertDatabaseMissing(BookClient::class, [
+        'book_id' => $book->id,
+        'client_id' => $client->id,
+    ]);
+});

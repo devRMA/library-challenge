@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Book;
+use App\Models\BookClient;
 use App\Models\Client;
 use App\Models\User;
 
@@ -153,4 +154,24 @@ it('should indicate which books are available', function () {
             'name' => $book2->name,
             'available' => true,
         ]);
+});
+
+it('should delete the rentals when the book is deleted', function () {
+    $user = User::factory()->create();
+    $book = Book::factory()->create();
+    $client = Client::factory()->create();
+
+    $book->clients()->attach($client, [
+        'rent_started_at' => now(),
+        'rent_ended_at' => now(),
+    ]);
+
+    actingAs($user)
+        ->deleteJson(route('books.destroy', $book))
+        ->assertNoContent();
+
+    assertDatabaseMissing(BookClient::class, [
+        'book_id' => $book->id,
+        'client_id' => $client->id,
+    ]);
 });
