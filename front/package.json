@@ -30,5 +30,8 @@
         "prettier": "^3.2.5",
         "prettier-plugin-tailwindcss": "^0.5.11",
         "typescript": "^5.3.3"
+    },
+    "dependencies": {
+        "@vueuse/core": "^10.9.0"
     }
 }
